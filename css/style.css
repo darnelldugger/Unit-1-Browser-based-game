@@ -70,6 +70,9 @@ main {
 }
 #main-content {
   background-color: blueviolet;
+  width: 100%;
+  height: 100%;
+
 }
 #score-board {
   background-color: chartreuse;
@@ -77,11 +80,14 @@ main {
 
 #image-area {
   background-color: black;
+  height: 50%;
+
 }
 
 #choice-area {
   background-color: yellow;
   color: black;
+  height: 50%;
 }
 
 #main-content {
