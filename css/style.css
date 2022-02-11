@@ -30,12 +30,11 @@ body {
   min-height: 100vh;
   /* mobile first - single column */
   grid-template-columns: 1fr;
-  grid-template-rows: 50px 30px auto 100px;
+  grid-template-rows: 70px auto 70px;
   grid-template-areas: 
     "header"
-    "footer"
     "content"
-    "side";
+    "footer"
 }
 
 header {
@@ -49,11 +48,6 @@ footer {
   grid-area: footer;
 }
 
-aside {
-  background-color: #00a6fb;
-  color: #3c4856;
-  grid-area: side;
-}
 
 main {
   grid-area: content;
@@ -62,7 +56,6 @@ main {
 
 header,
 footer,
-aside,
 main {
   display: flex;
   justify-content: center;
