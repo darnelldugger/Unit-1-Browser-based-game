@@ -52,6 +52,8 @@ footer {
 main {
   grid-area: content;
   background-color: #0059a6;
+  display: flex;
+  
 }
 
 header,
@@ -60,4 +62,14 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#time-clock {
+  background-color: aquamarine;
+}
+#main-content {
+  background-color: blueviolet;
+}
+#score-board {
+  background-color: chartreuse;
 }
