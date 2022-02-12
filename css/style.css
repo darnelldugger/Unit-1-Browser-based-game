@@ -61,7 +61,6 @@ header,
 footer,
 main {
   display: flex;
-  justify-content: 
   align-items: center;
 }
 
@@ -81,22 +80,12 @@ main {
 #image-area {
   background-color: black;
   height: 50%;
-
 }
 
 #choice-area {
   background-color: yellow;
   color: black;
   height: 50%;
+  display: flex;
 }
 
-#main-content {
-
-
-
-
-
-
-
-  
-}
