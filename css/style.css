@@ -89,3 +89,8 @@ main {
   display: flex;
 }
 
+.skip-reset {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
