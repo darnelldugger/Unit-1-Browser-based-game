@@ -1,2 +1,15 @@
-//render message with rules and how to play the game.
-//once the ok button is clicked, the timer starts.
+/*-------------------------------- Constants --------------------------------*/
+
+
+/*-------------------------------- Variables --------------------------------*/
+let winner, timeOut
+
+
+/*------------------------ Cached Element References ------------------------*/
+const imageUpload = document.querySelector('#image-area')
+
+
+/*----------------------------- Event Listeners -----------------------------*/
+
+
+/*-------------------------------- Functions --------------------------------*/
