@@ -32,6 +32,9 @@ function init() {
 render()
 
 function render(){
-  imageQuest.innerHTML = qbList.image
+  // imageQuest.src = qbList.image
+  const img =document.createElement("img")
+  img.src = qbList.image 
+  imageQuest.appendChild(img)
 }
 
