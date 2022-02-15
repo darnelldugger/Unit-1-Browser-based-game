@@ -1,19 +1,19 @@
 /*-------------------------------- Constants --------------------------------*/
-const qbList = [
-{ name: "Brett Favre", image: "brett-favre.jpg"},
-{ name: "Cam Newton",photo_url: "images/cam-newton.jpg" },
-
-]
-console.log(qbList[0].photo_url)
+const qbList = {
+  image: "../images/brett-favre.jpg",
+  choices: ["Tom Brady", "Jim Kelly", "Greg Flaukler", "Brett Farve"],
+  correctAnswer: "Brett Favre"
+}
+console.log(qbList)
 /*-------------------------------- Variables --------------------------------*/
 let winner, timeOut
 
 
 /*------------------------ Cached Element References ------------------------*/
-const img = document.getElementById('image-area')
+const imageQuest = document.getElementById('image-area')
 const scoreCount = document.getElementById('score-board')
-const countDown = document.getElementById('time-clock')
 const nextBtn = document.getElementById('next')
+const countDown = document.getElementById('time-clock')
 const resetBtn = document.getElementById('startOver')
 const messages = document.getElementById('msg')
 
@@ -24,14 +24,14 @@ nextBtn.addEventListener('click', (evt) =>{
 })
 
 /*-------------------------------- Functions --------------------------------*/
+
 init ()
 
-function init () {
-
+function init() {
 }
+render()
 
-function render() {
-  img.innerHTML = qbList[0].image
+function render(){
+  imageQuest.innerHTML = qbList.image
 }
-
 
