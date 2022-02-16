@@ -86,7 +86,7 @@ const btnArea = document.querySelector('#choice-area')
 /*----------------------------- Event Listeners -----------------------------*/
 
 nextBtn.addEventListener('click', getQuestion)
-// resetBtn.addEventListener('click', clearOut)
+resetBtn.addEventListener('click', clearOut)
 
 // nextBtn.addEventListener('click', nextQuestion)
 /*-------------------------------- Functions --------------------------------*/
@@ -154,20 +154,22 @@ function handleChoice(evt) {
   }
 }
 
-function clearOut (evt) {
+function clearOut () {
   document.querySelector('#image-area').innerHTML = ""
   btnArea.innerHTML = ""
+  
 }
 
 // function nextQuestion (evt) {
 // }
 
-timeLeft = 60
+timeLeft = 10
 let timer = setInterval(function() {
   countDown.textContent = timeLeft + ' secs to go!'
   timeLeft -= 1
   if (timeLeft < 0) {
-    countDown.textContent = 'Try, again!'
+    countDown.textContent = 'Try, again!';
+    
   }
   // console.log(timeLeft)
 }, 1000)
