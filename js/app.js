@@ -30,7 +30,7 @@ const qbList =[
 
 
 /*-------------------------------- Variables --------------------------------*/
-let winner, timeOut, questions, currentQuestion
+let winner, timeOut, questions, currentQuestion, timeLeft
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -92,3 +92,12 @@ function handleChoice(evt) {
   }
 }
 
+timeLeft = 10
+let timer = setInterval(function() {
+  countDown.textContent = timeLeft + 'seconds remaining.'
+  timeLeft -= 1
+  if (timeLeft < 0) {
+    countDown.textContent = 'Congrats, you have won the game!'
+  }
+  // console.log(timeLeft)
+}, 1000)
