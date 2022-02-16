@@ -44,7 +44,7 @@ const qbList =[
   },
   {
     image: "../images/john-elway.jpg",
-    choices: ["Jpe Montana", "Jim Kelly", "John Elway", "Terry Bradshaw"],
+    choices: ["Joe Montana", "Jim Kelly", "John Elway", "Terry Bradshaw"],
     correctAnswer: 2,
     asked: false,
   },
