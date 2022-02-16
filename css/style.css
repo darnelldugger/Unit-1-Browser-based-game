@@ -39,11 +39,15 @@ body {
 
 header {
   grid-area: header;
- 
+  background-color: rgb(43, 189, 226);
+  border-style: solid;
+  border-radius: 12%;
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
 }
 
 footer {
-  
   color: #3a001e;
   grid-area: footer;
 }
@@ -66,20 +70,31 @@ main {
 
 #time-clock {
   background-color: aquamarine;
+  border-style: solid;
+  border-radius: 12%;
+  margin: 2rem;
 }
 #main-content {
-  background-color: blueviolet;
+  
   width: 100%;
   height: 100%;
+  /* border-style: solid;
+  border-radius: 12%; */
 
 }
 #score-board {
   background-color: chartreuse;
+  border-style: solid;
+  border-radius: 12%;
+  margin: 2rem;
 }
 
 #image-area {
-  
+  background-color: blueviolet;
   height: 50%;
+  border-style: solid;
+  border-radius: 12%;
+  margin: 2rem;
 }
 
 #choice-area {
@@ -87,6 +102,8 @@ main {
   color: black;
   height: 50%;
   display: flex;
+  border-style: solid;
+  border-radius: 12%;
 }
 
 .skip-reset {
