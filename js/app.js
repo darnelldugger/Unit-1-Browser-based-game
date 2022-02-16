@@ -80,14 +80,13 @@ const nextBtn = document.getElementById('next')
 const countDown = document.getElementById('time-clock')
 const resetBtn = document.getElementById('startOver')
 const messages = document.getElementById('msg')
-const choices =document.querySelectorAll('.option')
+// const choices =document.querySelectorAll('.option')
+const btnArea = document.querySelector('#choice-area')
 
 /*----------------------------- Event Listeners -----------------------------*/
-choices.forEach(btn => {
-  btn.addEventListener('click', handleChoice)
-})
-nextBtn.addEventListener('click', nextQuestion)
-resetBtn.addEventListener('click', clearOut)
+
+nextBtn.addEventListener('click', getQuestion)
+// resetBtn.addEventListener('click', clearOut)
 
 // nextBtn.addEventListener('click', nextQuestion)
 /*-------------------------------- Functions --------------------------------*/
@@ -97,19 +96,21 @@ init ()
 
 function init() {
   questions = [...qbList]
+  messages.textContent = 'Welcome to NAME THAT QUARTERBACK! Press play to get started.'
   getQuestion()
-  render()
 }
 // render()
 function getQuestion() {
   const idx = getRandomIndex()
   currentQuestion = questions[idx]
+  render()
   //add show image and choices here
 }
 
 function render() {
-  messages.textContent = 'Welcome to NAME THAT QUARTERBACK! Press play to get started.'
+  clearOut()
   displayImage()
+  displayOptions()
 }
 
 function displayImage() {
@@ -118,6 +119,19 @@ function displayImage() {
   document.querySelector('#image-area').appendChild(image)
   console.log(currentQuestion.image)
 }
+
+function displayOptions() {
+  currentQuestion.choices.forEach((choice, idx )=> {
+    const button = document.createElement('button')
+    button.classList.add("btn", "btn-lg", "btn-primary", "option")
+    button.id = idx
+    button.textContent = choice
+    button.addEventListener('click', handleChoice)
+    btnArea.appendChild(button)
+    
+})
+}
+
 
 function getRandomIndex(){
   const idx = Math.floor(Math.random() * questions.length)
@@ -141,11 +155,12 @@ function handleChoice(evt) {
 }
 
 function clearOut (evt) {
-
+  document.querySelector('#image-area').innerHTML = ""
+  btnArea.innerHTML = ""
 }
 
-function nextQuestion (evt) {
-}
+// function nextQuestion (evt) {
+// }
 
 timeLeft = 60
 let timer = setInterval(function() {
