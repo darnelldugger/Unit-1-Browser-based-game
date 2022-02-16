@@ -126,7 +126,8 @@ function handleChoice(evt) {
   console.log(evt.target.id)
   const choice =parseInt(evt.target.id)
   if (choice === currentQuestion.correctAnswer) {
-    messages.textContent = 'You scored a touchdown, 7 points have been added to your score!'
+    messages.textContent = 'You scored a touchdown, 7 points have been added to your score!';
+    scoreCount.textContent = parseInt(scoreCount.textContent) + parseInt(7)
   } else {
     messages.textContent = 'Oh no! You have been sacked. Try again!'
   }
@@ -137,12 +138,8 @@ let timer = setInterval(function() {
   countDown.textContent = timeLeft
   timeLeft -= 1
   if (timeLeft < 0) {
-    countDown.textContent = 'Oh no, you lost the game!'
+    countDown.textContent = 'Try, again!'
   }
   // console.log(timeLeft)
 }, 1000)
 
-// score = 0
-// function getScore () {
-//   if()
-// }
