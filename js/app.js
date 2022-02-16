@@ -126,15 +126,15 @@ function handleChoice(evt) {
   console.log(evt.target.id)
   const choice =parseInt(evt.target.id)
   if (choice === currentQuestion.correctAnswer) {
-    console.log(`Correct you chose ${correctAnswer}`)
+    messages.textContent = 'You scored a touchdown, 7 points have been added to your score!'
   } else {
-    console.log('incorrect')
+    messages.textContent = 'Oh no! You have been sacked. Try again!'
   }
 }
 
-timeLeft = 10
+timeLeft = 60
 let timer = setInterval(function() {
-  countDown.textContent = timeLeft + 'seconds remaining.'
+  countDown.textContent = timeLeft
   timeLeft -= 1
   if (timeLeft < 0) {
     countDown.textContent = 'Oh no, you lost the game!'
@@ -142,7 +142,7 @@ let timer = setInterval(function() {
   // console.log(timeLeft)
 }, 1000)
 
-score = 0
-function getScore () {
-
-}
+// score = 0
+// function getScore () {
+//   if()
+// }

@@ -73,6 +73,8 @@ main {
   border-style: solid;
   border-radius: 12%;
   margin: 2rem;
+  width: 20%;
+  text-align: center;
 }
 #main-content {
   
@@ -87,6 +89,8 @@ main {
   border-style: solid;
   border-radius: 12%;
   margin: 2rem;
+  width: 10%;
+  text-align: center;
 }
 
 #image-area {
@@ -94,7 +98,7 @@ main {
   height: 50%;
   border-style: solid;
   border-radius: 12%;
-  margin: 2rem;
+  margin: .5rem;
 }
 
 #choice-area {
