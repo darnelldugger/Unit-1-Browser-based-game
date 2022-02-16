@@ -109,13 +109,14 @@ function getQuestion() {
 
 function render() {
   messages.textContent = 'Welcome to NAME THAT QUARTERBACK! Press play to get started.'
+  displayImage()
 }
 
-function ShowObject() {
+function displayImage() {
   const image = document.createElement('img')
-  image.src = questions.image
+  image.src = currentQuestion.image
   document.querySelector('#image-area').appendChild(image)
-  
+  console.log(currentQuestion.image)
 }
 
 function getRandomIndex(){
@@ -144,8 +145,6 @@ function clearOut (evt) {
 }
 
 function nextQuestion (evt) {
-  questions = [...qbList]
-  getQuestion(evt)
 }
 
 timeLeft = 60
