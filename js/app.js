@@ -71,7 +71,7 @@ const qbList =[
 
 
 /*-------------------------------- Variables --------------------------------*/
-let winner, questions, currentQuestion, timeLeft, score
+let winner, questions, currentQuestion, timeLeft, currentScore
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -86,6 +86,8 @@ const choices =document.querySelectorAll('.option')
 choices.forEach(btn => {
   btn.addEventListener('click', handleChoice)
 })
+nextBtn.addEventListener('click', nextQuestion)
+resetBtn.addEventListener('click', clearOut)
 
 // nextBtn.addEventListener('click', nextQuestion)
 /*-------------------------------- Functions --------------------------------*/
@@ -102,13 +104,18 @@ function init() {
 function getQuestion() {
   const idx = getRandomIndex()
   currentQuestion = questions[idx]
-  console.log(currentQuestion)
+  //add show image and choices here
 }
 
-function render(){
+function render() {
+  messages.textContent = 'Welcome to NAME THAT QUARTERBACK! Press play to get started.'
+}
+
+function ShowObject() {
   const image = document.createElement('img')
   image.src = questions.image
   document.querySelector('#image-area').appendChild(image)
+  
 }
 
 function getRandomIndex(){
@@ -125,11 +132,20 @@ function handleChoice(evt) {
   console.log(evt.target.id)
   const choice =parseInt(evt.target.id)
   if (choice === currentQuestion.correctAnswer) {
-    messages.textContent = 'You scored a touchdown, 7 points have been added to your score!';
     scoreCount.textContent = parseInt(scoreCount.textContent) + parseInt(7)
+    messages.textContent = 'Touchdown, 7 points have been added to your score!'
   } else {
     messages.textContent = 'Oh no! You have been sacked. Try again!'
   }
+}
+
+function clearOut (evt) {
+
+}
+
+function nextQuestion (evt) {
+  questions = [...qbList]
+  getQuestion(evt)
 }
 
 timeLeft = 60
