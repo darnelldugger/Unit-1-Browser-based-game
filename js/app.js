@@ -24,13 +24,54 @@ const qbList =[
     correctAnswer: 2,
     asked: false,
   },
-
+  {
+    image: "../images/doug-williams.jpg",
+    choices: ["Micheal Vick", "Cam Newton", "Donovan McNabb", "Doug Williams"],
+    correctAnswer: 3,
+    asked: false,
+  },
+  {
+    image: "../images/drew-brees.jpg",
+    choices: ["Drew Brees", "Peyton Manning", "Tom Brady", "Carson Wentze"],
+    correctAnswer: 0,
+    asked: false,
+  },
+  {
+    image: "../images/joe-namath.jpg",
+    choices: ["Wally Acksers", "Jim Kelly", "Joe Namath", "Terry Bradshaw"],
+    correctAnswer: 2,
+    asked: false,
+  },
+  {
+    image: "../images/john-elway.jpg",
+    choices: ["Jpe Montana", "Jim Kelly", "John Elway", "Terry Bradshaw"],
+    correctAnswer: 2,
+    asked: false,
+  },
+  {
+    image: "../images/kurt-warner.jpg",
+    choices: ["Kurt Warner", "Jim Kelly", "Drew Brees", "Terry Bradshaw"],
+    correctAnswer: 0,
+    asked: false,
+  },
+  {
+    image: "../images/michael-vick.jpg",
+    choices: ["Cam Newton", "Michael Vick", "Doug Williams", "Lamar Smith"],
+    correctAnswer: 1,
+    asked: false,
+  },
+  {
+    image: "../images/peyton-manning.jpg",
+    choices: ["Tom Brady", "Jim Kelly", "Kurt Kitner", "Peyton Manning"],
+    correctAnswer: 3,
+    asked: false,
+  },
 ]
 
 
 
 /*-------------------------------- Variables --------------------------------*/
-let winner, timeOut, questions, currentQuestion, timeLeft
+let winner, questions, currentQuestion, timeLeft, score
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -67,7 +108,6 @@ function getQuestion() {
 
 function render(){
   // imageQuest.src = qbList.image
-  const img =document.createElement("img")
   img.src = qbList.image 
   imageQuest.appendChild(img)
 }
@@ -86,7 +126,7 @@ function handleChoice(evt) {
   console.log(evt.target.id)
   const choice =parseInt(evt.target.id)
   if (choice === currentQuestion.correctAnswer) {
-    console.log('correct')
+    console.log(`Correct you chose ${correctAnswer}`)
   } else {
     console.log('incorrect')
   }
@@ -97,7 +137,12 @@ let timer = setInterval(function() {
   countDown.textContent = timeLeft + 'seconds remaining.'
   timeLeft -= 1
   if (timeLeft < 0) {
-    countDown.textContent = 'Congrats, you have won the game!'
+    countDown.textContent = 'Oh no, you lost the game!'
   }
   // console.log(timeLeft)
 }, 1000)
+
+score = 0
+function getScore () {
+
+}
