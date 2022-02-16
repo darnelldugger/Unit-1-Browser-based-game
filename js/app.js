@@ -75,20 +75,19 @@ let winner, questions, currentQuestion, timeLeft, score
 
 
 /*------------------------ Cached Element References ------------------------*/
-const imageQuest = document.getElementById('image-area')
 const scoreCount = document.getElementById('score-board')
 const nextBtn = document.getElementById('next')
 const countDown = document.getElementById('time-clock')
 const resetBtn = document.getElementById('startOver')
 const messages = document.getElementById('msg')
 const choices =document.querySelectorAll('.option')
-console.log(choices)
 
 /*----------------------------- Event Listeners -----------------------------*/
 choices.forEach(btn => {
   btn.addEventListener('click', handleChoice)
 })
 
+// nextBtn.addEventListener('click', nextQuestion)
 /*-------------------------------- Functions --------------------------------*/
 //when ready to add start button, remove this line
 // start button can call upon init()
@@ -97,7 +96,7 @@ init ()
 function init() {
   questions = [...qbList]
   getQuestion()
-
+  render()
 }
 // render()
 function getQuestion() {
@@ -107,9 +106,9 @@ function getQuestion() {
 }
 
 function render(){
-  // imageQuest.src = qbList.image
-  img.src = qbList.image 
-  imageQuest.appendChild(img)
+  const image = document.createElement('img')
+  image.src = questions.image
+  document.querySelector('#image-area').appendChild(image)
 }
 
 function getRandomIndex(){
@@ -135,7 +134,7 @@ function handleChoice(evt) {
 
 timeLeft = 60
 let timer = setInterval(function() {
-  countDown.textContent = timeLeft
+  countDown.textContent = timeLeft + ' secs to go!'
   timeLeft -= 1
   if (timeLeft < 0) {
     countDown.textContent = 'Try, again!'
