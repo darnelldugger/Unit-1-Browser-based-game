@@ -41,7 +41,7 @@ header {
   grid-area: header;
   background-color: rgb(43, 189, 226);
   border-style: solid;
-  border-radius: 12%;
+  border-radius: 2%;
   display: flex;
   justify-content: center;
   margin: 2rem;
@@ -71,7 +71,8 @@ main {
 #time-clock {
   background-color: aquamarine;
   border-style: solid;
-  border-radius: 12%;
+  border-radius: 3%;
+  
   margin: 2rem;
   width: 20%;
   text-align: center;
@@ -97,7 +98,7 @@ main {
   background-color: blueviolet;
   height: 50%;
   border-style: solid;
-  border-radius: 12%;
+  border-radius: 3%;
   margin: .5rem;
 }
 
@@ -107,11 +108,24 @@ main {
   height: 50%;
   display: flex;
   border-style: solid;
-  border-radius: 12%;
+  border-radius: 3%;
 }
 
 .skip-reset {
   display: flex;
   justify-content: center;
   align-content: center;
+}
+
+.btn {
+  margin: .5rem;
+  border-color: black;
+  border-style: solid;
+  border-radius: 3%;
+  border-width: .3rem;
+}
+.btn:hover {
+  background-color: aliceblue;
+  color: blue;
+ 
 }
