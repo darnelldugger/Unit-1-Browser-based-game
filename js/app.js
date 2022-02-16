@@ -30,7 +30,7 @@ const qbList =[
 
 
 /*-------------------------------- Variables --------------------------------*/
-let winner, timeOut, questions
+let winner, timeOut, questions, currentQuestion
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -40,12 +40,12 @@ const nextBtn = document.getElementById('next')
 const countDown = document.getElementById('time-clock')
 const resetBtn = document.getElementById('startOver')
 const messages = document.getElementById('msg')
-const choices =document.querySelectorAll('#btn')
+const choices =document.querySelectorAll('.option')
+console.log(choices)
 
 /*----------------------------- Event Listeners -----------------------------*/
-nextBtn.addEventListener('click', (evt) =>{
-  evt.preventDefault()
-  render()
+choices.forEach(btn => {
+  btn.addEventListener('click', handleChoice)
 })
 
 /*-------------------------------- Functions --------------------------------*/
@@ -55,10 +55,15 @@ init ()
 
 function init() {
   questions = [...qbList]
-  const idx = getRandomIndex()
-  console.log(questions[idx])
+  getQuestion()
+
 }
 // render()
+function getQuestion() {
+  const idx = getRandomIndex()
+  currentQuestion = questions[idx]
+  console.log(currentQuestion)
+}
 
 function render(){
   // imageQuest.src = qbList.image
@@ -75,5 +80,15 @@ function getRandomIndex(){
     return idx
   }
 
+}
+
+function handleChoice(evt) {
+  console.log(evt.target.id)
+  const choice =parseInt(evt.target.id)
+  if (choice === currentQuestion.correctAnswer) {
+    console.log('correct')
+  } else {
+    console.log('incorrect')
+  }
 }
 
