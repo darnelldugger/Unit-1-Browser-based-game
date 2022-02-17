@@ -161,3 +161,17 @@ main {
 img {
   border-radius: 1rem;
 }
+
+button {
+  margin: .5rem;
+  border-color: black;
+  border-style: solid;
+  border-radius: .6rem;
+  border-width: .2rem;
+  font-weight: bold;
+  background-color: chartreuse;
+}
+
+button:hover {
+  color: whitesmoke;
+}

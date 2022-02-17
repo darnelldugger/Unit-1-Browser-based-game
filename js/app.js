@@ -1,22 +1,43 @@
 /*-------------------------------- Constants --------------------------------*/
-const seventies = []
-
-
-const eighties = []
-
-const nineties = []
-
-const twoThousands =[
+const seventies = [
   {
-    image: "../images/brett-favre.jpg",
-    choices: ["Tom Brady", "Jim Kelly", "Greg Flaukler", "Brett Favre"],
+    image: "../images/ken-stabler.jpg",
+    choices: ["Ken Stabler", "Phil Sims", "Archie Manning", "Terry Bradshaw"],
+    correctAnswer: 0,
+    asked: false,
+  },
+  {
+    image: "../images/archie-mannin.jpg",
+    choices: ["Ken Stabler", "Phil Sims", "Archie Manning", "Terry Bradshaw"],
+    correctAnswer: 2,
+    asked: false,
+  },
+  {
+    image: "../images/terry-bradshaw.jpg",
+    choices: ["Joe Montana", "Phil Sims", "Dan Marino", "Terry Bradshaw"],
     correctAnswer: 3,
     asked: false,
   },
   {
-    image: "../images/cam-newton.jpg",
-    choices: ["Micheal Vick", "Cam Newton", "Dante Culpepper", "Carson Wentze"],
+    image: "../images/roger-staubach.jpg",
+    choices: ["Joe Montana", "Roger Staubach", "John Elway", "Ken Stabler"],
     correctAnswer: 1,
+    asked: false,
+  },
+  {
+    image: "../images/fran-tarkenton.jpg",
+    choices: ["Fran Tarkenton", "Phil Sims", "Joe Montana", "Fran Tarkenton"],
+    correctAnswer: 3,
+    asked: false,
+  },
+]
+
+
+const eighties = [
+  {
+    image: "../images/doug-williams.jpg",
+    choices: ["Micheal Vick", "Cam Newton", "Donovan McNabb", "Doug Williams"],
+    correctAnswer: 3,
     asked: false,
   },
   {
@@ -26,35 +47,70 @@ const twoThousands =[
     asked: false,
   },
   {
-    image: "../images/donovan-mcnabb.jpg",
-    choices: ["Micheal Vick", "Cam Newton", "Donovan McNabb", "Carson Wentze"],
+    image: "../images/phil-sims.jpg",
+    choices: ["Joe Montana", "Cam Newton", "Phil Sims", "Carson Wentze"],
     correctAnswer: 2,
     asked: false,
   },
   {
-    image: "../images/doug-williams.jpg",
-    choices: ["Micheal Vick", "Cam Newton", "Donovan McNabb", "Doug Williams"],
-    correctAnswer: 3,
-    asked: false,
-  },
-  {
-    image: "../images/drew-brees.jpg",
-    choices: ["Drew Brees", "Peyton Manning", "Tom Brady", "Carson Wentze"],
-    correctAnswer: 0,
-    asked: false,
-  },
-  {
-    image: "../images/joe-namath.jpg",
-    choices: ["Wally Acksers", "Jim Kelly", "Joe Namath", "Terry Bradshaw"],
+    image: "../images/dan-marion.jpg",
+    choices: ["Joe Montana", "Phil Sims", "Dan Marino", "Carson Wentze"],
     correctAnswer: 2,
     asked: false,
   },
+  
+
   {
     image: "../images/john-elway.jpg",
     choices: ["Joe Montana", "Jim Kelly", "John Elway", "Terry Bradshaw"],
     correctAnswer: 2,
     asked: false,
   },
+]
+
+const nineties = [
+  {
+    image: "../images/brett-favre.jpg",
+    choices: ["Tom Brady", "Jim Kelly", "Greg Flaukler", "Brett Favre"],
+    correctAnswer: 3,
+    asked: false,
+  },
+  {
+    image: "../images/steve-young.jpg",
+    choices: ["Joe Montana", "Jim Kelly", "Steve Young", "Terry Bradshaw"],
+    correctAnswer: 2,
+    asked: false,
+  }
+  {
+    image: "../images/drew-bledsoe.jpg",
+    choices: ["Tom Brady", "Jim Kelly", "Drew Bledsoe", "Brett Favre"],
+    correctAnswer: 2,
+    asked: false,
+  },
+  {
+    image: "../images/jim-kelly.jpg",
+    choices: ["Tom Brady", "Jim Kelly", "Andy Warhal", "Brett Favre"],
+    correctAnswer: 1,
+    asked: false,
+  },
+  {
+    image: "../images/troy-aikman.jpg",
+    choices: ["Troy Aikman", "Drew Brees", "Greg Flaukler", "Kurt Kitner"],
+    correctAnswer: 3,
+    asked: false,
+  },
+]
+
+
+const twoThousands =[
+
+  {
+    image: "../images/donovan-mcnabb.jpg",
+    choices: ["Micheal Vick", "Cam Newton", "Donovan McNabb", "Carson Wentze"],
+    correctAnswer: 2,
+    asked: false,
+  },
+
   {
     image: "../images/kurt-warner.jpg",
     choices: ["Kurt Warner", "Jim Kelly", "Drew Brees", "Terry Bradshaw"],
@@ -73,13 +129,20 @@ const twoThousands =[
     correctAnswer: 3,
     asked: false,
   },
+  {
+    image: "../images/tom-brady.jpg",
+    choices: ["Tom Brady", "Jim Kelly", "Kurt Kitner", "Peyton Manning"],
+    correctAnswer: 0,
+    asked: false,
+  }
 ]
 
 const allCategories = [seventies, eighties, nineties, twoThousands]
 
 /*-------------------------------- Variables --------------------------------*/
-let winner, questions, currentQuestion, timeLeft, currentScore
+let winner, questions, currentQuestion, timeLeft, currentScore, timerIntervalId
 let choiceMade = false
+let seconds = 0
 
 /*------------------------ Cached Element References ------------------------*/
 const scoreCount = document.getElementById('score-board')
@@ -93,8 +156,8 @@ const btnArea = document.querySelector('#choice-area')
 /*----------------------------- Event Listeners -----------------------------*/
 
 nextBtn.addEventListener('click', getQuestion)
-resetBtn.addEventListener('click', getQuestion)
-
+// resetBtn.addEventListener('click', renderCategories)
+resetBtn.addEventListener('click', resetTimer)
 // nextBtn.addEventListener('click', nextQuestion)
 /*-------------------------------- Functions --------------------------------*/
 //when ready to add start button, remove this line
@@ -103,12 +166,13 @@ init ()
 
 function init() {
   renderCategories()
+
 }
 
 function renderCategories() {
   const categories = ["70's", "80's", "90's", "2000's" ]
   const welcome = document.createElement('h1')
-  welcome.textContent = 'Please choose a category'
+  welcome.textContent = 'Welcome to Name That Quaterback! Please choose a category.'
   messages.appendChild(welcome)
   categories.forEach((btn, idx) => {
     const button = document.createElement('button')
@@ -116,6 +180,7 @@ function renderCategories() {
     button.id = idx
     button.addEventListener('click', () => pickCategory(idx))
     messages.appendChild(button)
+    resetTimer()
   })
 }
 
@@ -192,18 +257,14 @@ function handleChoice(evt) {
 function clearOut () {
   document.querySelector('#image-area').textContent = ""
   messages.innerHTML = ''
-  btnArea.textContent = ""
-  countDown.textContent = ""
+  
 }
-
-// function nextQuestion (evt) {
-// }
 
 
 function handleTimer () {
   
   timeLeft = 45
-  let timer = setInterval(function() {
+  let timerIntervalId = setInterval(function() {
     countDown.textContent = timeLeft + ' secs to go!'
     timeLeft -= 1
     if (timeLeft < 0) {
@@ -217,6 +278,13 @@ function handleTimer () {
   }, 1000)
 }
 
+function resetTimer() {
+  // Default the button text to Start on reset
+	countDown.textContent = "Start"
+  clearInterval(timerIntervalId)
+  seconds = 0
+  timerIntervalId = null
+}
 
 function getScore() {
   
