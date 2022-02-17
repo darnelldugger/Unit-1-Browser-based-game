@@ -53,7 +53,7 @@ const eighties = [
     asked: false,
   },
   {
-    image: "../images/dan-marion.jpg",
+    image: "../images/dan-mario.jpg",
     choices: ["Joe Montana", "Phil Sims", "Dan Marino", "Carson Wentze"],
     correctAnswer: 2,
     asked: false,
@@ -80,7 +80,7 @@ const nineties = [
     choices: ["Joe Montana", "Jim Kelly", "Steve Young", "Terry Bradshaw"],
     correctAnswer: 2,
     asked: false,
-  }
+  },
   {
     image: "../images/drew-bledsoe.jpg",
     choices: ["Tom Brady", "Jim Kelly", "Drew Bledsoe", "Brett Favre"],
@@ -98,12 +98,11 @@ const nineties = [
     choices: ["Troy Aikman", "Drew Brees", "Greg Flaukler", "Kurt Kitner"],
     correctAnswer: 3,
     asked: false,
-  },
+  }
 ]
 
 
 const twoThousands =[
-
   {
     image: "../images/donovan-mcnabb.jpg",
     choices: ["Micheal Vick", "Cam Newton", "Donovan McNabb", "Carson Wentze"],
@@ -150,14 +149,14 @@ const nextBtn = document.getElementById('next')
 const countDown = document.getElementById('time-clock')
 const resetBtn = document.getElementById('startOver')
 const messages = document.getElementById('msg')
-// const choices =document.querySelectorAll('.option')
+const images = document.getElementById('image-area')
 const btnArea = document.querySelector('#choice-area')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 nextBtn.addEventListener('click', getQuestion)
 // resetBtn.addEventListener('click', renderCategories)
-resetBtn.addEventListener('click', resetTimer)
+resetBtn.addEventListener('click', resetGame)
 // nextBtn.addEventListener('click', nextQuestion)
 /*-------------------------------- Functions --------------------------------*/
 //when ready to add start button, remove this line
@@ -165,6 +164,7 @@ resetBtn.addEventListener('click', resetTimer)
 init ()
 
 function init() {
+
   renderCategories()
 
 }
@@ -180,7 +180,7 @@ function renderCategories() {
     button.id = idx
     button.addEventListener('click', () => pickCategory(idx))
     messages.appendChild(button)
-    resetTimer()
+    
   })
 }
 
@@ -205,6 +205,12 @@ function render() {
   displayImage()
   displayOptions()
   
+}
+
+function resetGame() {
+  clearOut()
+  resetTimer()
+  renderCategories()
 }
 
 function displayImage() {
@@ -255,16 +261,19 @@ function handleChoice(evt) {
 }
 
 function clearOut () {
-  document.querySelector('#image-area').textContent = ""
   messages.innerHTML = ''
+  images.innerHTML = ''
+  btnArea.innerHTML = ''
+  countDown.innerHTML = ''
   
+
 }
 
 
 function handleTimer () {
   
   timeLeft = 45
-  let timerIntervalId = setInterval(function() {
+  timerIntervalId = setInterval(function() {
     countDown.textContent = timeLeft + ' secs to go!'
     timeLeft -= 1
     if (timeLeft < 0) {
