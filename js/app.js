@@ -165,15 +165,15 @@ function clearOut () {
 // function nextQuestion (evt) {
 // }
 
-timeLeft = 5
+timeLeft = 45
 let timer = setInterval(function() {
   countDown.textContent = timeLeft + ' secs to go!'
   timeLeft -= 1
   if (timeLeft < 0) {
     document.getElementById("msg").style.color = "red";
-    messages.textContent = 'You were sacked on 4th down and lost the game. Try again!';
+    messages.textContent = 'You were sacked on 4th down and lost the game. Press the reset button to try again!';
     document.getElementById("time-clock").style.color = "red";
-    countDown.textContent = 'Time is up!'
+    countDown.textContent = '0:00'
     
   }
   // console.log(timeLeft)

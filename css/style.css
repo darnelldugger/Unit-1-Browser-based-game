@@ -133,24 +133,26 @@ main {
   margin: .5rem;
   border-color: black;
   border-style: solid;
-  border-radius: 1rem;
-  border-width: .3rem;
+  border-radius: .6rem;
+  border-width: .2rem;
   font-weight: bold;
 
 }
 
+.btn:hover {
+  background-color: aliceblue;
+  color: black;
+}
 .btn-md {
   border-color: black;
   border-style: solid;
-  border-radius: 1rem;
-  border-width: .3rem;
+  border-radius: .6rem;
+  border-width: .2rem;
   background-color: rgb(43, 189, 226);
 }
-
 .btn-md:hover {
   background-color: aliceblue;
   color: black;
- 
 }
 
 .msg {
