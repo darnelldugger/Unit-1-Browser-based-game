@@ -214,6 +214,7 @@ function resetGame() {
   clearOut()
   clearScore()
   resetTimer()
+  pauseMusic()
   renderCategories()
 }
 
