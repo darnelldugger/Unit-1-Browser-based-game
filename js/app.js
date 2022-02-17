@@ -7,7 +7,7 @@ const seventies = [
     asked: false,
   },
   {
-    image: "../images/archie-mannin.jpg",
+    image: "../images/archie-manning.jpg",
     choices: ["Ken Stabler", "Phil Sims", "Archie Manning", "Terry Bradshaw"],
     correctAnswer: 2,
     asked: false,
@@ -26,8 +26,8 @@ const seventies = [
   },
   {
     image: "../images/fran-tarkenton.jpg",
-    choices: ["Fran Tarkenton", "Phil Sims", "Joe Montana", "Fran Tarkenton"],
-    correctAnswer: 3,
+    choices: ["Fran Tarkenton", "Phil Sims", "Joe Montana", "Roger Staubach"],
+    correctAnswer: 0,
     asked: false,
   },
 ]
@@ -53,7 +53,7 @@ const eighties = [
     asked: false,
   },
   {
-    image: "../images/dan-mario.jpg",
+    image: "../images/dan-marino.jpg",
     choices: ["Joe Montana", "Phil Sims", "Dan Marino", "Carson Wentze"],
     correctAnswer: 2,
     asked: false,
@@ -96,7 +96,7 @@ const nineties = [
   {
     image: "../images/troy-aikman.jpg",
     choices: ["Troy Aikman", "Drew Brees", "Greg Flaukler", "Kurt Kitner"],
-    correctAnswer: 3,
+    correctAnswer: 0,
     asked: false,
   }
 ]
@@ -139,7 +139,7 @@ const twoThousands =[
 const allCategories = [seventies, eighties, nineties, twoThousands]
 
 /*-------------------------------- Variables --------------------------------*/
-let winner, questions, currentQuestion, timeLeft, currentScore, timerIntervalId
+let winner, questions, currentQuestion, timeLeft, currentScore, timerIntervalId, music
 let choiceMade = false
 let seconds = 0
 
@@ -151,6 +151,7 @@ const resetBtn = document.getElementById('startOver')
 const messages = document.getElementById('msg')
 const images = document.getElementById('image-area')
 const btnArea = document.querySelector('#choice-area')
+const audiobtn = document.getElementById('audio')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -172,6 +173,7 @@ function init() {
 function renderCategories() {
   const categories = ["70's", "80's", "90's", "2000's" ]
   const welcome = document.createElement('h1')
+  document.getElementById("msg").style.color = "black"
   welcome.textContent = 'Welcome to Name That Quaterback! Please choose a category.'
   messages.appendChild(welcome)
   categories.forEach((btn, idx) => {
@@ -187,9 +189,10 @@ function renderCategories() {
 function pickCategory (index){
   questions = allCategories[index]
   messages.innerHTML = ''
-  music()
+  playMusic()
   handleTimer()
   getQuestion()
+  pauseMusicBtn()
 }
 // render()
 function getQuestion() {
@@ -209,8 +212,16 @@ function render() {
 
 function resetGame() {
   clearOut()
+  clearScore()
   resetTimer()
   renderCategories()
+}
+
+function clearScore() {
+  scoreCount.innerHTML = ''
+  const h1 = document.createElement('h1')
+  h1.textContent = 0
+  scoreCount.appendChild(h1)
 }
 
 function displayImage() {
@@ -253,9 +264,10 @@ function handleChoice(evt) {
   if (choice === currentQuestion.correctAnswer) {
     scoreCount.textContent = parseInt(scoreCount.textContent) + parseInt(7)
     document.getElementById("msg").style.color = "green"
-    messages.textContent = 'Touchdown! +7'
+    messages.textContent = 'Touchdown! +7, click next'
   } else {
-    messages.textContent = 'Oh no! You have been sacked. Try again!'
+    document.getElementById("msg").style.color = "red"
+    messages.textContent = 'Oh no! You have been sacked. Click next to continue!'
 
   }
 }
@@ -265,8 +277,8 @@ function clearOut () {
   images.innerHTML = ''
   btnArea.innerHTML = ''
   countDown.innerHTML = ''
-  
-
+  audiobtn.innerHTML = ''
+  // scoreCount.innerHTML = ''
 }
 
 
@@ -289,18 +301,28 @@ function handleTimer () {
 
 function resetTimer() {
   // Default the button text to Start on reset
-	countDown.textContent = "Start"
+	countDown.textContent = "Timer"
   clearInterval(timerIntervalId)
   seconds = 0
   timerIntervalId = null
 }
 
-function getScore() {
-  
+
+function playMusic() {
+  music = new Audio('../audio/01 NFL PrimeTime Song (1-4) out o.mp3')
+  music.play()
+  music.loop = true
 }
 
-function music() {
-  const music = new Audio('../audio/01 NFL PrimeTime Song (1-4) out o.mp3')
-  // music.play()
-  // music.loop = true
+function pauseMusicBtn() {
+  const button = document.createElement('button')
+  button.textContent = 'Pause Audio'
+  button.addEventListener('click', pauseMusic)
+  audiobtn.appendChild(button)
+}
+
+function pauseMusic () {
+  music.pause()
+  music.currentTime = 0
+
 }
