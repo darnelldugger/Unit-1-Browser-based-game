@@ -86,7 +86,7 @@ const btnArea = document.querySelector('#choice-area')
 /*----------------------------- Event Listeners -----------------------------*/
 
 nextBtn.addEventListener('click', getQuestion)
-resetBtn.addEventListener('click', clearOut)
+resetBtn.addEventListener('click', getQuestion)
 
 // nextBtn.addEventListener('click', nextQuestion)
 /*-------------------------------- Functions --------------------------------*/
@@ -148,32 +148,44 @@ function handleChoice(evt) {
   const choice =parseInt(evt.target.id)
   if (choice === currentQuestion.correctAnswer) {
     scoreCount.textContent = parseInt(scoreCount.textContent) + parseInt(7)
-    messages.textContent = 'Touchdown, 7 points have been added to your score!'
+    document.getElementById("msg").style.color = "green"
+    messages.textContent = 'Touchdown! +7'
   } else {
     messages.textContent = 'Oh no! You have been sacked. Try again!'
+
   }
 }
 
 function clearOut () {
-  document.querySelector('#image-area').innerHTML = ""
-  btnArea.innerHTML = ""
-  
+  document.querySelector('#image-area').textContent = ""
+  btnArea.textContent = ""
+  countDown.textContent = ""
 }
 
 // function nextQuestion (evt) {
 // }
 
-timeLeft = 60
+timeLeft = 5
 let timer = setInterval(function() {
   countDown.textContent = timeLeft + ' secs to go!'
   timeLeft -= 1
   if (timeLeft < 0) {
-    countDown.textContent = 'Try, again!';
+    document.getElementById("msg").style.color = "red";
+    messages.textContent = 'You were sacked on 4th down and lost the game. Try again!';
+    document.getElementById("time-clock").style.color = "red";
+    countDown.textContent = 'Time is up!'
     
   }
   // console.log(timeLeft)
 }, 1000)
 
-const music = new Audio('../audio/01 NFL PrimeTime Song (1-4) out o.mp3')
-music.play()
-music.loop = false
+
+function getScore() {
+  
+}
+
+function music() {
+  const music = new Audio('../audio/01 NFL PrimeTime Song (1-4) out o.mp3')
+  music.play()
+  music.loop = false
+}
