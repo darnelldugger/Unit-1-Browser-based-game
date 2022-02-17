@@ -1,5 +1,12 @@
 /*-------------------------------- Constants --------------------------------*/
-const qbList =[
+const seventies = []
+
+
+const eighties = []
+
+const nineties = []
+
+const twoThousands =[
   {
     image: "../images/brett-favre.jpg",
     choices: ["Tom Brady", "Jim Kelly", "Greg Flaukler", "Brett Favre"],
@@ -68,11 +75,11 @@ const qbList =[
   },
 ]
 
-
+const allCategories = [seventies, eighties, nineties, twoThousands]
 
 /*-------------------------------- Variables --------------------------------*/
 let winner, questions, currentQuestion, timeLeft, currentScore
-
+let choiceMade = false
 
 /*------------------------ Cached Element References ------------------------*/
 const scoreCount = document.getElementById('score-board')
@@ -95,14 +102,35 @@ resetBtn.addEventListener('click', getQuestion)
 init ()
 
 function init() {
-  questions = [...qbList]
-  messages.textContent = 'Welcome to NAME THAT QUARTERBACK! Press play to get started.'
+  renderCategories()
+}
+
+function renderCategories() {
+  const categories = ["70's", "80's", "90's", "2000's" ]
+  const welcome = document.createElement('h1')
+  welcome.textContent = 'Please choose a category'
+  messages.appendChild(welcome)
+  categories.forEach((btn, idx) => {
+    const button = document.createElement('button')
+    button.textContent = categories[idx]
+    button.id = idx
+    button.addEventListener('click', () => pickCategory(idx))
+    messages.appendChild(button)
+  })
+}
+
+function pickCategory (index){
+  questions = allCategories[index]
+  messages.innerHTML = ''
+  music()
+  handleTimer()
   getQuestion()
 }
 // render()
 function getQuestion() {
   const idx = getRandomIndex()
   currentQuestion = questions[idx]
+  choiceMade = false
   render()
   //add show image and choices here
 }
@@ -111,6 +139,7 @@ function render() {
   clearOut()
   displayImage()
   displayOptions()
+  
 }
 
 function displayImage() {
@@ -143,7 +172,11 @@ function getRandomIndex(){
 
 }
 
+
+
 function handleChoice(evt) {
+  if (choiceMade === true)return
+  choiceMade = true
   console.log(evt.target.id)
   const choice =parseInt(evt.target.id)
   if (choice === currentQuestion.correctAnswer) {
@@ -158,6 +191,7 @@ function handleChoice(evt) {
 
 function clearOut () {
   document.querySelector('#image-area').textContent = ""
+  messages.innerHTML = ''
   btnArea.textContent = ""
   countDown.textContent = ""
 }
@@ -165,19 +199,23 @@ function clearOut () {
 // function nextQuestion (evt) {
 // }
 
-timeLeft = 45
-let timer = setInterval(function() {
-  countDown.textContent = timeLeft + ' secs to go!'
-  timeLeft -= 1
-  if (timeLeft < 0) {
-    document.getElementById("msg").style.color = "red";
-    messages.textContent = 'You were sacked on 4th down and lost the game. Press the reset button to try again!';
-    document.getElementById("time-clock").style.color = "red";
-    countDown.textContent = '0:00'
-    
-  }
-  // console.log(timeLeft)
-}, 1000)
+
+function handleTimer () {
+  
+  timeLeft = 45
+  let timer = setInterval(function() {
+    countDown.textContent = timeLeft + ' secs to go!'
+    timeLeft -= 1
+    if (timeLeft < 0) {
+      document.getElementById("msg").style.color = "red";
+      messages.textContent = 'You were sacked on 4th down and lost the game. Press the reset button to try again!';
+      document.getElementById("time-clock").style.color = "red";
+      countDown.textContent = '0:00'
+      choiceMade = true
+    }
+    // console.log(timeLeft)
+  }, 1000)
+}
 
 
 function getScore() {
@@ -186,6 +224,6 @@ function getScore() {
 
 function music() {
   const music = new Audio('../audio/01 NFL PrimeTime Song (1-4) out o.mp3')
-  music.play()
-  music.loop = false
+  // music.play()
+  // music.loop = true
 }
