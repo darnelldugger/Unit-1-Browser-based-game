@@ -41,10 +41,11 @@ header {
   grid-area: header;
   background-color: rgb(43, 189, 226);
   border-style: solid;
-  border-radius: 2%;
-  display: flex;
-  justify-content: center;
+  border-radius: 1rem;
+  border-width: .3rem;
+  text-align: center;
   margin: 2rem;
+  padding: 2rem;
 }
 
 footer {
@@ -55,7 +56,6 @@ footer {
 
 main {
   grid-area: content;
-  
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -72,69 +72,77 @@ main {
 #time-clock {
   background-color: aquamarine;
   border-style: solid;
-  border-radius: 3%;
-  
+  border-radius: 1rem;
+  border-width: .3rem;
   margin: .7rem;
   width: fit-content;
   text-align: center;
+  padding: 1rem;
 }
 #main-content {
   border-style: solid;
   border-radius: 3%;
+  border-width: .3rem;
   width: 70%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
 
 
 }
 #score-board {
   background-color: chartreuse;
   border-style: solid;
-  border-radius: 3%;
+  border-radius: 1rem;
+  border-width: .3rem;
   margin: .7rem;
   width: 10%;
   text-align: center;
   font-size: 40px;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #image-area {
-  
+  text-align: center;
   height: 30%;
-  border-style: solid;
-  border-radius: 3%;
   margin: .5rem;
-  
+  padding-top: 1rem;
 }
 
 #choice-area {
-  
   color: black;
   height: 25%;
   width: 100%;
   display: flex;
-  
-
   align-items: center;
   justify-content: center;
 }
 
 .skip-reset {
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-content: center;
 }
 
 .btn {
   margin: .5rem;
   border-color: black;
   border-style: solid;
-  border-radius: 3%;
+  border-radius: 1rem;
   border-width: .3rem;
-  
+  font-weight: bold;
+
 }
+
+.btn-md {
+  border-color: black;
+  border-style: solid;
+  border-radius: 1rem;
+  border-width: .3rem;
+}
+
 .btn:hover {
   background-color: aliceblue;
   color: black;
@@ -143,4 +151,8 @@ main {
 
 .msg {
   text-align: center;
+}
+
+img {
+  border-radius: 1rem;
 }

@@ -176,4 +176,4 @@ let timer = setInterval(function() {
 
 const music = new Audio('../audio/01 NFL PrimeTime Song (1-4) out o.mp3')
 music.play()
-music.loop = true
+music.loop = false
