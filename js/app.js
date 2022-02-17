@@ -163,7 +163,7 @@ function clearOut () {
 // function nextQuestion (evt) {
 // }
 
-timeLeft = 10
+timeLeft = 60
 let timer = setInterval(function() {
   countDown.textContent = timeLeft + ' secs to go!'
   timeLeft -= 1
@@ -174,3 +174,6 @@ let timer = setInterval(function() {
   // console.log(timeLeft)
 }, 1000)
 
+const music = new Audio('./audio/01 NFL PrimeTime Song (1-4) out o.mp3')
+music.play()
+music.loop = true
