@@ -15,7 +15,7 @@ Credits for Images:
 
 
 Get started by copying and pasting the following to your URL: 
-[Name That Quarterback](https:faithful-net.surge.sh)
+[Name That Quarterback](faithful-net.surge.sh)
 
 Technologies:
 Javascript, HTML, CSS and Bootstrap
