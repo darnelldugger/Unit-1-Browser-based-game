@@ -218,6 +218,16 @@ function resetGame() {
   renderCategories()
 }
 
+function getWinner() {
+  clearOut()
+  clearScore()
+  resetTimer()
+  pauseMusic()
+  const h1 = document.createElement('h1')
+  h1.textContent = 'Congratulations! You are a winner!'
+  messages.appendChild(h1)
+}
+
 function clearScore() {
   scoreCount.innerHTML = ''
   const h1 = document.createElement('h1')
@@ -229,7 +239,6 @@ function displayImage() {
   const image = document.createElement('img')
   image.src = currentQuestion.image
   document.querySelector('#image-area').appendChild(image)
-  console.log(currentQuestion.image)
 }
 
 function displayOptions() {
@@ -249,13 +258,12 @@ function getRandomIndex(){
   const idx = Math.floor(Math.random() * questions.length)
   if (questions[idx].asked === true) {
     getRandomIndex()
+    
   } else {
     return idx
   }
 
 }
-
-
 
 function handleChoice(evt) {
   if (choiceMade === true)return
@@ -269,7 +277,6 @@ function handleChoice(evt) {
   } else {
     document.getElementById("msg").style.color = "red"
     messages.textContent = 'Oh no! You have been sacked. Click next to continue!'
-
   }
 }
 
@@ -279,7 +286,6 @@ function clearOut () {
   btnArea.innerHTML = ''
   countDown.innerHTML = ''
   audiobtn.innerHTML = ''
-  // scoreCount.innerHTML = ''
 }
 
 
