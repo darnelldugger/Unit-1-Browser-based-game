@@ -24,6 +24,6 @@ Planned future enhancements:
 high score feature
 
 Screenshots:
-[When the game is deployed](../name-that-quarterback/images/Screen%20Shot%202022-02-18%20at%209.40.44%20AM.png)
+When the game is deployed(../name-that-quarterback/images/Screen%20Shot%202022-02-18%20at%209.40.44%20AM.png)
 
-[While the game is played](../name-that-quarterback/images/Screen%20Shot%202022-02-18%20at%209.41.12%20AM.png)
+While the game is played](../name-that-quarterback/images/Screen%20Shot%202022-02-18%20at%209.41.12%20AM.png)
